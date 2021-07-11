@@ -45,4 +45,6 @@ While the command is configurable, by default it is set to `/uploadsign`.
 On any sign successfully being uploaded to Imgur, the following hook is called.
 > OnSignUploaded(string url, string title, ulong playerID)
 
-
+## TO-DO
+* Localization
+* Photographs may not be saved in this way, add that functionality.
