@@ -15,15 +15,25 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 
 
 ## Configuration
-
+`{
+  "Chat Command": "uploadsign",
+  "Use Discord Core": true,
+  "Discord Channel to Upload to": "sign-uploader",
+  "Use Server Rewards": true,
+  "Cost to Upload": 20,
+  "Cooldown Between Uploads (seconds)": 30.0
+}
+`
 ## Permissions
 
 ## Commands
 
+### Upload a Sign
+While the command is configurable, by default it is set to `/uploadsign`.
+> /uploadsign "Title of Image(Optional)"
+> 
 ## Developer API
 On any sign successfully being uploaded to Imgur, the following hook is called.
 > OnSignUploaded(string url, string title, ulong playerID)
 
-### Upload a Sign
-While the command is configurable, by default it is set to `/uploadsign`.
-> /uploadsign "Title of Image(Optional)"
+
