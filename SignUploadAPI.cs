@@ -99,6 +99,7 @@ namespace Oxide.Plugins
         }
         private void UploadImage(byte[] image, BasePlayer player, string info)
         {
+            // The following callback is called by the ImgurAPI plugin containing response information. This may take a few seconds.
             Action<Hash<string, object>> action = (hashSet) =>
             {
                 bool success = (bool)hashSet["Success"];
@@ -117,23 +118,22 @@ namespace Oxide.Plugins
                 {
                     takePoints(player, config.cost);
                 }
-
                 SendReplyWithIcon(player, $"{h1}Successful Upload.{close}\n" +
                     $"{p}The file may be accessed at {highlight}{data?["Link"]}{close}" + (config.useServerRewards ? $"{sub}\n{config.cost} RP deducted.{close}" : ""));
 
                 Interface.CallHook("OnSignUploaded", info, player.userID);
-
             };
 
+            // Inform the player their sign is uploading.
             SendReplyWithIcon(player, $"{h2}Uploading...{close}");
 
+            // If the cooldown configuration setting is set to greater than 0 seconds, add them to a HashSet of users then remove them from it after the specificed time.
             if (config.cooldown > 0)
             {
 
                 signUploadCooldown.Add(player.userID);
                 timer.Once(config.cooldown, () =>
                 {
-
                     signUploadCooldown.Remove(player.userID);
                 });
             }
