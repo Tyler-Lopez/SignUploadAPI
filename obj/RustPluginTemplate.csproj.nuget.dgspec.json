@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj",
+        "projectName": "RustPluginTemplate",
+        "projectPath": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj",
+        "packagesPath": "C:\\Users\\tylop\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\tylop\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
