@@ -1,6 +1,8 @@
 # SignUploadAPI
 
 ## About 
+Have you ever used Rust's in-game art tool to make something that you have so much pride over that you are sad to see it go? SignUploadAPI is for you: save your art, and save your memories.
+
 This plug-in is a simple tool to allow players with the appropriate permission level the ability to upload the art of an in-game sign they are looking at to Imgur. The plug-in may optionally be integrated with DiscordCore, to DM the player the Imgur link or post to a channel, and/or ServerRewards, to deduct a configurable amount of RP from the player's balance. To prevent players from spamming the functionality, a configurable cooldown is included.
 
 This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist), which allows players to download pictures from a web address to the server's file storage. This plug-in delivers the opposite functionality: giving players a way to upload pictures from the server's file storage to a web address on Imgur.
