@@ -15,15 +15,21 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 
 
 ## Configuration
-```{
+```
+{
   "Chat Command": "uploadsign",
-  "Use Discord Core": true,
-  "Discord Channel to Upload to": "sign-uploader",
-  "Use Server Rewards": true,
+  "Use Discord Core": false,
+  "Discord Channel to Upload to": "",
+  "Use Server Rewards": false,
   "Cost to Upload": 20,
   "Cooldown Between Uploads (seconds)": 30.0
 }
 ```
+
+* `Use Discord Core`: Upon enabling this, if DiscordCore is successfully loaded players who have linked their Discord accounts with their Steam accounts on the server will receive a DM including the picture. This does not post to a channel on it's own.
+* `Discord Channel to Upload to`: DiscordCore will post the file to the specified channel on your Discord server.
+* `Cost to Upload`: This is the amount of RP which is deducted upon an upload attempt to Imgur if `Use Server Rewards` is set to true.  
+
 ## Permissions
 
 ## Commands
