@@ -15,7 +15,7 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 
 
 ## Configuration
-`{
+```{
   "Chat Command": "uploadsign",
   "Use Discord Core": true,
   "Discord Channel to Upload to": "sign-uploader",
@@ -23,7 +23,7 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
   "Cost to Upload": 20,
   "Cooldown Between Uploads (seconds)": 30.0
 }
-`
+```
 ## Permissions
 
 ## Commands
