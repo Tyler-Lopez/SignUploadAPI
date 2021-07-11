@@ -41,25 +41,26 @@ namespace Oxide.Plugins
             if (config.useServerRewards && ServerRewards == null) Puts("You are missing Server Rewards, get it here: https://umod.org/plugins/server-rewards");
             if (config.useDiscordCore && DiscordCore == null) Puts("You are missing Server Rewards, get it here: https://umod.org/plugins/discord-core");
             cmd.AddChatCommand(config.command, this, "uploadSignFromRaycast");
+            lang.RegisterMessages(messages, this);
         }
         #endregion
         #region Handle Sign-Uploading
         void uploadSignFromRaycast(BasePlayer player, string command, string[] args)
         {
             // The following are various causes of error the player may encounter.
-            if(!permission.UserHasPermission(player.UserIDString, "signuploader.use"))
+            if (!permission.UserHasPermission(player.UserIDString, "signuploader.use"))
             {
-                SendErrorPlayer(player, $"{p}You don't have the appropriate permission to use this.{close}");
+                SendErrorPlayer(player, $"{p}{lang.GetMessage("noPermission", this, player.UserIDString)}{close}");
                 return;
             }
             if (config.cooldown > 0 && signUploadCooldown.Contains(player.userID))
             {
-                SendErrorPlayer(player, $"{p}You're trying to do that again too soon.{close}");
+                SendErrorPlayer(player, $"{p}{lang.GetMessage("cooldownError", this, player.UserIDString)}{close}");
                 return;
             }
             if ((config.useServerRewards && getPoints(player) < config.cost) && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
             {
-                SendErrorPlayer(player, $"{p}You don't have enough {highlight}RP{colorClose} to upload this sign to Imgur!{close}");
+                SendErrorPlayer(player, $"{p}{lang.GetMessage("currencyError", this, player.UserIDString)} {highlight}{lang.GetMessage("currency", this, player.UserIDString)}{colorClose}!{close}");
                 return;
             }
             // Using Raycast, find the entity in front of the player.
@@ -67,12 +68,12 @@ namespace Oxide.Plugins
             // If there was no entity detected handle the error.
             if (sign == null)
             {
-                SendErrorPlayer(player, $"{p}You weren't looking at any entity.{close}");
+                SendErrorPlayer(player, $"{p}{lang.GetMessage("notLookingAtValid", this, player.UserIDString)}{close}");
                 return;
             }
             // If the player specifys a first argument, make it the title of the uploaded picture. Else, set to Untitled.
-            string title = args.Length < 1 ? "Untitled" : args[0];
-            
+            string title = args.Length < 1 ? lang.GetMessage("noTitle", this, player.UserIDString) : args[0];
+
             if (sign is PhotoFrame)
             {
                 var data = FileStorage.server.Get(((PhotoFrame)sign)._overlayTextureCrc, FileStorage.Type.png, sign.net.ID);
@@ -93,7 +94,7 @@ namespace Oxide.Plugins
             }
             else
             {
-                SendErrorPlayer(player, $"{p}You weren't looking at a sign or photoframe.{close}");
+                SendErrorPlayer(player, $"{p}{close}");
                 return;
             }
         }
@@ -105,27 +106,27 @@ namespace Oxide.Plugins
                 bool success = (bool)hashSet["Success"];
                 if (!success)
                 {
-                    SendErrorPlayer(player, $"{p}An error occured uploading the image \n\n{JsonConvert.SerializeObject(hashSet)}{close}");
+                    SendErrorPlayer(player, $"{p} \n\n{JsonConvert.SerializeObject(hashSet)}{close}");
                     return;
                 }
                 Hash<string, object> data = hashSet["Data"] as Hash<string, object>;
                 if (config.useDiscordCore)
                 {
                     DiscordCore?.Call("SendMessageToUser", player.userID.ToString(), $"{data?["Link"]}");
-                    if (config.channelName != null) DiscordCore?.Call("SendMessageToChannel", config.channelName, $"\n\n**NEW PHOTO UPLOADED BY {player.displayName}**\n{data?["Link"]}");
+                    if (config.channelName != null) DiscordCore?.Call("SendMessageToChannel", config.channelName, $"\n\n**{lang.GetMessage("discordMessage", this, player.UserIDString)} {player.displayName}**\n{data?["Link"]}");
                 }
                 if (config.useServerRewards && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
                 {
                     takePoints(player, config.cost);
                 }
-                SendReplyWithIcon(player, $"{h1}Successful Upload.{close}\n" +
-                    $"{p}The file may be accessed at {highlight}{data?["Link"]}{close}" + (config.useServerRewards ? $"{sub}\n{config.cost} RP deducted.{close}" : ""));
+                SendReplyWithIcon(player, $"{h1}{lang.GetMessage("success", this, player.UserIDString)}{close}\n" +
+                    $"{p}{lang.GetMessage("fileAccessedAt", this, player.UserIDString)} {highlight}{data?["Link"]}{close}" + (config.useServerRewards ? $"{sub}\n{config.cost} {lang.GetMessage("rpWithdrawl", this, player.UserIDString)}{close}" : ""));
 
                 Interface.CallHook("OnSignUploaded", info, player.userID);
             };
 
             // Inform the player their sign is uploading.
-            SendReplyWithIcon(player, $"{h2}Uploading...{close}");
+            SendReplyWithIcon(player, $"{h2}{lang.GetMessage("uploading", this, player.UserIDString)}{close}");
 
             // If the cooldown configuration setting is set to greater than 0 seconds, add them to a HashSet of users then remove them from it after the specificed time.
             if (config.cooldown > 0)
@@ -152,7 +153,7 @@ namespace Oxide.Plugins
         {
             Effect.server.Run("assets/prefabs/locks/keypad/effects/lock.code.denied.prefab",
         player.transform.position);
-            SendReplyWithIcon(player, "<size=15><color=red>Error.</color></size> " + message);
+            SendReplyWithIcon(player, $"<size=15><color=red>{lang.GetMessage("error", this, player.UserIDString)}</color></size> " + message);
         }
         private void SendReplyWithIcon(BasePlayer player, string message)
         {
@@ -237,6 +238,25 @@ namespace Oxide.Plugins
         protected override void SaveConfig() => Config.WriteObject(config);
         protected override void LoadDefaultConfig() => config = getDefaultConfig();
 
+        #endregion
+        #region Localization
+        Dictionary<string, string> messages = new Dictionary<string, string>()
+        {
+            {"noPermission", "You don't have the appropriate permission to use this."},
+            {"notLookingAtValid", "You weren't looking at a sign or photoframe." },
+            {"uploadError", "An error occured uploading the image" },
+            {"error", "Error. " },
+            {"uploading", "Uploading..." },
+            {"rpWithdrawl", "RP deducted" },
+            {"noTitle", "Untitled" },
+            {"fileAccessedAt", "The file may be accessed at" },
+            {"success", "Successful Upload." },
+            {"currencyError", "You don't have enough" },
+            {"currency", "RP" },
+            {"cooldownError", "You're trying to use this command again too soon." },
+            {"discordMessage", "NEW IMAGE UPLOADED BY" }
+
+        };
         #endregion
     }
 }
