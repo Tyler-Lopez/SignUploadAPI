@@ -17,5 +17,5 @@ This plug-in is a simple tool to allow players with the appropriate permission l
 ## Commands
 
 ### Upload a Sign
-While the command is configurable, by default it is set to `/upload sign`.
+While the command is configurable, by default it is set to `/uploadsign`.
 > /uploadsign "Title of Image(Optional"
