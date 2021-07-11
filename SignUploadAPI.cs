@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Oxide.Core;
 using Oxide.Core.Plugins;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace Oxide.Plugins
         void OnServerInitialized()
         {
             if (ImgurApi == null) Puts("You are missing ImgurApi, get it here: https://umod.org/plugins/imgur-api");
-            if (config.useServerRewards && ServerRewards == null ) Puts("You are missing Server Rewards, get it here: https://umod.org/plugins/server-rewards");
+            if (config.useServerRewards && ServerRewards == null) Puts("You are missing Server Rewards, get it here: https://umod.org/plugins/server-rewards");
             if (config.useDiscordCore && DiscordCore == null) Puts("You are missing Server Rewards, get it here: https://umod.org/plugins/discord-core");
             cmd.AddChatCommand(config.command, this, "uploadSignFromRaycast");
         }
@@ -39,12 +40,12 @@ namespace Oxide.Plugins
         #region Handle Sign-Uploading
         void uploadSignFromRaycast(BasePlayer player, string command, string[] args)
         {
-            if(config.cooldown > 0 && signUploadCooldown.Contains(player.userID))
+            if (config.cooldown > 0 && signUploadCooldown.Contains(player.userID))
             {
                 SendErrorPlayer(player, $"{p}You're trying to do that again too soon.{close}");
                 return;
-            } 
-            if(config.useServerRewards && getPoints(player) < config.cost)
+            }
+            if (config.useServerRewards && getPoints(player) < config.cost)
             {
                 SendErrorPlayer(player, $"{p}You don't have enough {highlight}RP{colorClose} to upload this sign to Imgur!{close}");
                 return;
@@ -105,6 +106,8 @@ namespace Oxide.Plugins
 
                 SendReplyWithIcon(player, $"{h1}Successful Upload.{close}\n" +
                     $"{p}The file may be accessed at {highlight}{data?["Link"]}{close}" + (config.useServerRewards ? $"{sub}\n{config.cost} RP deducted.{close}" : ""));
+
+                Interface.CallHook("OnSignUploaded", info, player.userID);
 
             };
 
