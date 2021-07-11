@@ -31,6 +31,10 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 * `Cost to Upload`: This is the amount of RP which is deducted upon an upload attempt to Imgur if `Use Server Rewards` is set to true.  
 
 ## Permissions
+```This plugin uses Oxide's permission system. To assign a permission, use oxide.grant <user or group> <name or steam id> <permission>. To remove a permission, use oxide.revoke <user or group> <name or steam id> <permission>.```
+
+* `signuploader.use` Allows the player or group to use the uploadsign plug-in.
+* `signuploader.free` Allows the player or group to use the uploadsign plug-in free of charge.
 
 ## Commands
 
