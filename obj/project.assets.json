@@ -597,11 +597,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\tylop\\OneDrive\\Documents\\GitHub\\2\\SignUploadAPI\\RustPluginTemplate.csproj",
       "projectName": "RustPluginTemplate",
-      "projectPath": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj",
+      "projectPath": "C:\\Users\\tylop\\OneDrive\\Documents\\GitHub\\2\\SignUploadAPI\\RustPluginTemplate.csproj",
       "packagesPath": "C:\\Users\\tylop\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\obj\\",
+      "outputPath": "C:\\Users\\tylop\\OneDrive\\Documents\\GitHub\\2\\SignUploadAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tylop\\AppData\\Roaming\\NuGet\\NuGet.Config",

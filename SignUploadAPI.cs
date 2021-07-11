@@ -29,6 +29,12 @@ namespace Oxide.Plugins
         private static string highlight = "<color=yellow>";
         #endregion
         #region Oxide Hooks
+        // Initialize permission.
+        void Init()
+        {
+            permission.RegisterPermission("signuploader.use", this); // Required to use SignUploadAPI
+            permission.RegisterPermission("signuploader.free", this); // If given and Use Server Rewards is enabled, deducts no RP upon use of SignUploadAPI.
+        }
         void OnServerInitialized()
         {
             if (ImgurApi == null) Puts("You are missing ImgurApi, get it here: https://umod.org/plugins/imgur-api");
@@ -40,26 +46,34 @@ namespace Oxide.Plugins
         #region Handle Sign-Uploading
         void uploadSignFromRaycast(BasePlayer player, string command, string[] args)
         {
+            // The following are various causes of error the player may encounter.
+            if(!permission.UserHasPermission(player.UserIDString, "signuploader.use"))
+            {
+                SendErrorPlayer(player, $"{p}You don't have the appropriate permission to use this.{close}");
+                return;
+            }
             if (config.cooldown > 0 && signUploadCooldown.Contains(player.userID))
             {
                 SendErrorPlayer(player, $"{p}You're trying to do that again too soon.{close}");
                 return;
             }
-            if (config.useServerRewards && getPoints(player) < config.cost)
+            if ((config.useServerRewards && getPoints(player) < config.cost) && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
             {
                 SendErrorPlayer(player, $"{p}You don't have enough {highlight}RP{colorClose} to upload this sign to Imgur!{close}");
                 return;
             }
-            string title = args.Length < 1 ? "Untitled" : args[0];
-
+            // Using Raycast, find the entity in front of the player.
             BaseEntity sign = entityRaycast(player);
-
+            // If there was no entity detected handle the error.
             if (sign == null)
             {
                 SendErrorPlayer(player, $"{p}You weren't looking at any entity.{close}");
                 return;
             }
-            else if (sign is PhotoFrame)
+            // If the player specifys a first argument, make it the title of the uploaded picture. Else, set to Untitled.
+            string title = args.Length < 1 ? "Untitled" : args[0];
+            
+            if (sign is PhotoFrame)
             {
                 var data = FileStorage.server.Get(((PhotoFrame)sign)._overlayTextureCrc, FileStorage.Type.png, sign.net.ID);
                 if (data != null)
@@ -99,7 +113,7 @@ namespace Oxide.Plugins
                     DiscordCore?.Call("SendMessageToUser", player.userID.ToString(), $"{data?["Link"]}");
                     if (config.channelName != null) DiscordCore?.Call("SendMessageToChannel", config.channelName, $"\n\n**NEW PHOTO UPLOADED BY {player.displayName}**\n{data?["Link"]}");
                 }
-                if (config.useServerRewards)
+                if (config.useServerRewards && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
                 {
                     takePoints(player, config.cost);
                 }

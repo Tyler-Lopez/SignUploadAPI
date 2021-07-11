@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "evWGKRkPrWQh+GwsanYJQciXABNkPAPGXUW6gIbcAbgM7upCXu2T2E9GkynrBcUNDA1xztGnJvlRTplHTNsIYA==",
+  "dgSpecHash": "R9A9avt1LAsIGkUuEL/PLJElHMJiVh3S3QZpRlvz1l+oyt/IFhvOJSs0gGUAHYiXshqn+Pr91O3NzJQeKxtKbQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\tylop\\Downloads\\RustPluginTemplate-split\\RustPluginTemplate-split\\RustPluginTemplate\\RustPluginTemplate.csproj",
+  "projectFilePath": "C:\\Users\\tylop\\OneDrive\\Documents\\GitHub\\2\\SignUploadAPI\\RustPluginTemplate.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tylop\\.nuget\\packages\\npoi\\2.5.3\\npoi.2.5.3.nupkg.sha512",
     "C:\\Users\\tylop\\.nuget\\packages\\portable.bouncycastle\\1.8.6\\portable.bouncycastle.1.8.6.nupkg.sha512",
