@@ -30,7 +30,6 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 * `Cost to Upload`: This is the amount of RP which is deducted upon an upload attempt to Imgur if `Use Server Rewards` is set to true.  
 
 ## Permissions
-```This plugin uses Oxide's permission system. To assign a permission, use oxide.grant <user or group> <name or steam id> <permission>. To remove a permission, use oxide.revoke <user or group> <name or steam id> <permission>.```
 
 * `signuploader.use` Allows the player or group to use the uploadsign plug-in.
 * `signuploader.free` Allows the player or group to use the uploadsign plug-in free of charge.
@@ -45,6 +44,5 @@ While the command is configurable, by default it is set to `/uploadsign`.
 On any sign successfully being uploaded to Imgur, the following hook is called.
 > OnSignUploaded(string url, string title, ulong playerID)
 
-## TO-DO
-* Localization
-* Photographs may not be saved in this way, add that functionality.
+## Known Issues
+* Photographs do not work. A future feature may be to allow for uploading of photographs and mugshots.
