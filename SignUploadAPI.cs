@@ -9,7 +9,7 @@ using UnityEngine;
 namespace Oxide.Plugins
 {
     [Info("SignUploadAPI", "Bunsen", "1.0.0")]
-    [Description("Upload the contents of a sign the player is looking at to Imgur. Optional DiscordCore and ServerRewards integration.")]
+    [Description("Upload the contents of a sign the player is looking at to Imgur. Optional DiscordCore and ServerRewards integration. https://github.com/Tyler-Lopez/SignUploadAPI")]
     public class SignUploadAPI : RustPlugin
     {
         #region Plug-in References
