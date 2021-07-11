@@ -31,12 +31,14 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 ## Chat Commands
 
 While the command is configurable, by default it is set to `/uploadsign`.
-> /uploadsign "Title of Image(Optional)"
+* `/uploadsign "Title of Image(Optional)"`
  
 ## Developer API
 
 On any sign successfully being uploaded to Imgur, the following hook is called.
-> OnSignUploaded(string url, string title, ulong playerID)
+```csharp
+void OnSignUploaded(string url, string title, ulong playerID)
+```
 
 ## Known Issues
 
