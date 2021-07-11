@@ -21,7 +21,8 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 ## Commands
 
 ## Developer API
-
+On any sign successfully being uploaded to Imgur, the following hook is called.
+> OnSignUploaded(string url, string title, ulong playerID)
 
 ### Upload a Sign
 While the command is configurable, by default it is set to `/uploadsign`.
