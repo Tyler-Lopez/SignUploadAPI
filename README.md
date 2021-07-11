@@ -15,3 +15,6 @@ This plug-in is a simple tool to allow players with the appropriate permission l
 ## Permissions
 
 ## Commands
+
+### Upload a Sign(Configurable Command)
+> /uploadsign "Title of Image(Optional"
