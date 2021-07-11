@@ -25,8 +25,8 @@ This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist
 
 ## Permissions
 
-* `signuploader.use` Allows the player or group to use the uploadsign plug-in.
-* `signuploader.free` Allows the player or group to use the uploadsign plug-in free of charge.
+* `signuploader.use` Allows the player or group to use the plugin.
+* `signuploader.free` Allows the player or group to use the plugin free of charge.
 
 ## Chat Commands
 
