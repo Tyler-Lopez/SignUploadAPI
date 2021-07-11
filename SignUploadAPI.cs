@@ -94,7 +94,7 @@ namespace Oxide.Plugins
             }
             else
             {
-                SendErrorPlayer(player, $"{p}{close}");
+                SendErrorPlayer(player, $"{p}{lang.GetMessage("notLookingAtValid", this, player.UserIDString)}{close}");
                 return;
             }
         }
