@@ -9,7 +9,7 @@ This plug-in is a simple tool to allow players with the appropriate permission l
 ## Examples
 <img width=500 src=https://user-images.githubusercontent.com/77797048/125180937-df8c6f00-e1cd-11eb-88a9-fd506f6c8c51.png>
 <img width=500 src=https://user-images.githubusercontent.com/77797048/125180922-ae13a380-e1cd-11eb-84c6-816a6c581bdc.png>
-<img src=https://user-images.githubusercontent.com/77797048/125181111-8e7d7a80-e1cf-11eb-9cf8-a622207f25bb.png>
+<img width=500 src=https://user-images.githubusercontent.com/77797048/125181111-8e7d7a80-e1cf-11eb-9cf8-a622207f25bb.png>
 
 
 ## Configuration
