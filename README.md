@@ -1,3 +1,3 @@
 # SignUploadAPI
  
-TODO: Oxide permissions, create a hook on successful upload.
+TODO: Oxide permissions, create a hook on successful upload. Complete README
