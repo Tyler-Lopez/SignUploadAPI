@@ -29,6 +29,7 @@ If a Photo Frame is selected and contains a Photo, the photo file itself will be
 }
 ```
 
+
 * `Use Discord Core`: Upon enabling this, if DiscordCore is successfully loaded players who have linked their Discord accounts with their Steam accounts on the server will receive a DM including the picture. This does not post to a channel on it's own.
 * `Discord Channel to Upload to`: DiscordCore will post the file to the specified channel on your Discord server.
 * `Cost to Upload`: This is the amount of RP which is deducted upon an upload attempt to Imgur if `Use Server Rewards` is set to true.  
