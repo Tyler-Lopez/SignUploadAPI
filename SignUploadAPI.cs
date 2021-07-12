@@ -19,14 +19,14 @@ namespace Oxide.Plugins
         #endregion
         #region Global Variables and Typography
         private HashSet<ulong> signUploadCooldown = new HashSet<ulong>();
-        ulong imageIcon = 76561198317970917;
-        private static string h1 = "<size=15><color=#F0A92C>";
-        private static string h2 = "<size=12><color=green>";
-        private static string sub = "<size=11><color=#B3B3B3>";
-        private static string p = "<size=12><color=#E8E8E8>";
-        private static string close = "</color></size>";
-        private static string colorClose = "</color>";
-        private static string highlight = "<color=yellow>";
+        private ulong imageIcon = 76561198317970917;
+        private string h1 = "<size=15><color=#F0A92C>";
+        private string h2 = "<size=12><color=green>";
+        private string sub = "<size=11><color=#B3B3B3>";
+        private string p = "<size=12><color=#E8E8E8>";
+        private string close = "</color></size>";
+        private string colorClose = "</color>";
+        private string highlight = "<color=yellow>";
         #endregion
         #region Oxide Hooks
         // Initialize permission.
