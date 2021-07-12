@@ -32,8 +32,8 @@ namespace Oxide.Plugins
         // Initialize permission.
         void Init()
         {
-            permission.RegisterPermission("signuploader.use", this); // Required to use SignUploadAPI
-            permission.RegisterPermission("signuploader.free", this); // If given and Use Server Rewards is enabled, deducts no RP upon use of SignUploadAPI.
+            permission.RegisterPermission("signuploadapi.use", this); // Required to use SignUploadAPI
+            permission.RegisterPermission("signuploadapi.free", this); // If given and Use Server Rewards is enabled, deducts no RP upon use of SignUploadAPI.
         }
         void OnServerInitialized()
         {
@@ -48,7 +48,7 @@ namespace Oxide.Plugins
         void uploadSignFromRaycast(BasePlayer player, string command, string[] args)
         {
             // The following are various causes of error the player may encounter.
-            if (!permission.UserHasPermission(player.UserIDString, "signuploader.use"))
+            if (!permission.UserHasPermission(player.UserIDString, "signuploadapi.use"))
             {
                 SendErrorPlayer(player, $"{p}{lang.GetMessage("noPermission", this, player.UserIDString)}{close}");
                 return;
@@ -58,7 +58,7 @@ namespace Oxide.Plugins
                 SendErrorPlayer(player, $"{p}{lang.GetMessage("cooldownError", this, player.UserIDString)}{close}");
                 return;
             }
-            if ((config.useServerRewards && getPoints(player) < config.cost) && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
+            if ((config.useServerRewards && getPoints(player) < config.cost) && !permission.UserHasPermission(player.UserIDString, "signuploadapi.free"))
             {
                 SendErrorPlayer(player, $"{p}{lang.GetMessage("currencyError", this, player.UserIDString)} {highlight}{lang.GetMessage("currency", this, player.UserIDString)}{colorClose}!{close}");
                 return;
@@ -76,11 +76,17 @@ namespace Oxide.Plugins
 
             if (sign is PhotoFrame)
             {
-                var data = FileStorage.server.Get(((PhotoFrame)sign)._overlayTextureCrc, FileStorage.Type.png, sign.net.ID);
-                if (data != null)
+                PhotoFrame signPF = sign as PhotoFrame;
+                // Is the photoframe holding a photo? If so - upload the contents of the picture instead.
+                BaseEntity photoEntity = signPF.children.First();
+                if (photoEntity != null && photoEntity.ShortPrefabName == "photo.entity")
                 {
-                    UploadImage(data, player, title);
-                    return;
+                    var data = FileStorage.server.Get(((PhotoEntity)photoEntity).ImageCrc, FileStorage.Type.png, sign.net.ID);
+                    if (data != null)
+                    {
+                        UploadImage(data, player, title);
+                        return;
+                    }
                 }
             }
             else if (sign is Signage)
@@ -98,6 +104,7 @@ namespace Oxide.Plugins
                 return;
             }
         }
+
         private void UploadImage(byte[] image, BasePlayer player, string info)
         {
             // The following callback is called by the ImgurAPI plugin containing response information. This may take a few seconds.
@@ -115,7 +122,7 @@ namespace Oxide.Plugins
                     DiscordCore?.Call("SendMessageToUser", player.userID.ToString(), $"{data?["Link"]}");
                     if (config.channelName != null) DiscordCore?.Call("SendMessageToChannel", config.channelName, $"\n\n**{lang.GetMessage("discordMessage", this, player.UserIDString)} {player.displayName}**\n{data?["Link"]}");
                 }
-                if (config.useServerRewards && !permission.UserHasPermission(player.UserIDString, "signuploader.free"))
+                if (config.useServerRewards && !permission.UserHasPermission(player.UserIDString, "signuploadapi.free"))
                 {
                     takePoints(player, config.cost);
                 }
