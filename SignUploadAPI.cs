@@ -77,8 +77,9 @@ namespace Oxide.Plugins
             if (sign is PhotoFrame)
             {
                 PhotoFrame signPF = sign as PhotoFrame;
+                BaseEntity photoEntity = null;
                 // Is the photoframe holding a photo? If so - upload the contents of the picture instead.
-                BaseEntity photoEntity = signPF.children.First();
+                if(signPF.inventory.itemList.Count() > 0) photoEntity = signPF.children.First();
                 if (photoEntity != null && photoEntity.ShortPrefabName == "photo.entity")
                 {
                     var data = FileStorage.server.Get(((PhotoEntity)photoEntity).ImageCrc, FileStorage.Type.png, sign.net.ID);
