@@ -36,8 +36,8 @@ If a Photo Frame is selected and contains a Photo, the photo file itself will be
 
 ## Permissions
 
-* `signuploader.use` Allows the player or group to use the plugin.
-* `signuploader.free` Allows the player or group to use the plugin free of charge.
+* `signuploadapi.use` Allows the player or group to use the plugin.
+* `signuploadapi.free` Allows the player or group to use the plugin free of charge.
 
 ## Chat Commands
 
