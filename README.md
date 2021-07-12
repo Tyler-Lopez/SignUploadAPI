@@ -6,6 +6,8 @@ This plug-in is a simple tool to allow players with the appropriate permission l
 
 This plug-in is NOT a copy of [Sign Artist](https://umod.org/plugins/sign-artist), which allows players to download pictures from a web address to the server's file storage. SignUploadAPI delivers the opposite functionality: giving players a way to upload pictures from the server's file storage to a web address on Imgur.
 
+If a Photo Frame is selected and contains a Photo, the photo file itself will be exported.
+
 ## Examples
 
 ![image](https://user-images.githubusercontent.com/77797048/125203743-cf18da80-e247-11eb-9f0d-1cf63aa2f976.png)
@@ -47,7 +49,3 @@ On any sign successfully being uploaded to Imgur, the following hook is called.
 ```csharp
 void OnSignUploaded(string url, string title, ulong playerID)
 ```
-
-## Known Issues
-
-* Photographs do not work. A future feature may be to allow for uploading of photographs and mugshots.
